@@ -1,0 +1,155 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Nov 9, 2017, 11:13:36 PM
+    Author     : DavidKing
+*/
+
+body{
+    background: url('dust_scratches.png') ;
+
+}
+
+p.orgDetails{
+
+    text-align: center;
+    font-weight: 2000;
+    font-size: 15pt;
+}
+
+h1{
+    color: rgb(226,54,54);
+    text-transform: uppercase;
+    font-family: Quicksand, sans-serif;
+    text-align: center;
+    font-weight: 2000;
+    font-size: 100pt;
+
+
+}
+
+h3{
+    text-transform: uppercase;
+    font-family: Quicksand, sans-serif;
+    text-align: center;
+    font-weight: 2000;
+    font-size: 20pt;
+    border-bottom-style: ridge;
+    border-color: rgb(81,140,202);
+    width: 100%;
+    background-color: rgb(80,74,74);
+    border-top-width: 5px;
+    color: rgb(226,54,54);
+}
+
+h2{
+    background-color: rgb(80,74,74);
+    font: bold;
+    text-transform: uppercase;
+    border-style: solid;
+    border-width: 3px;
+    border-bottom-width: 5px;
+    border-color: rgb(81,140,202);
+    text-align: center;
+    border-top-width: 5px;
+    border-top-style: solid;
+    margin: 25px;
+    padding: 25px;
+    font-size: 23pt;
+    color: rgb(226,54,54);
+}
+
+h4{
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 18pt;
+    color: rgb(226,54,54);
+}
+
+span{
+    font-size: 12px;
+    color:black;
+    text-align: center;
+}
+
+input{
+    padding: 5px;
+    margin: 4px;
+    width: 60%;
+
+}
+
+a.ex1{
+    background: rgb(247,143,63);
+    display: inline-block;
+    padding: 5px 10px 6px;
+    color: rgb(80,74,74);
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    line-height: 1;
+    -webkit-box-shadow: 0 1px 3px #999;
+    border-bottom: 1px solid #222;
+    position: relative;
+    cursor: pointer;
+
+}
+
+a.ex1:hover{
+    color: white;
+}
+
+header {
+    background-image:url(http://art.cafimg.com/images/Category_3370/subcat_10659/HULKVSAVENGERSBSEARS.tif);
+    display: block;
+    margin: 0 auto;
+    height: 150px;
+    width: 60%;
+    background-size:1000px 550px;
+    background-repeat: no-repeat;
+    background-position: center;
+    overflow: hidden;
+    position: relative;
+}
+
+#topPage{
+
+}
+
+#subtitle{
+    background-color: rgb(81,140,202);
+    background-size:cover;
+    height: 100x;
+    width: 80%;
+}
+
+table tbody{
+    overflow-y:scroll;
+    height:400px;
+    display:block;
+
+}
+
+table thead{
+    display:block;
+
+
+}
+
+#powerTable{
+    text-align: left;
+    border-collapse: collapse;
+}
+
+#powerTable th{
+    font-weight: 20px;
+    font-size: 15px;
+    border-bottom: 3px solid rgb(81,140,202);
+    text-align: center;
+    text-transform: uppercase;
+    color: rgb(0,0,0);
+
+}

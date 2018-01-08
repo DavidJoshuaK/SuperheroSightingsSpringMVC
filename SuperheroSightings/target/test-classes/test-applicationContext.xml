@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/mvc
+                           http://www.springframework.org/schema/mvc/spring-mvc.xsd
+                           http://www.springframework.org/schema/tx 
+                           http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+                           http://www.springframework.org/schema/context
+                           http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd"> 
+
+    <!-- Bean definitions go here -->
+    <tx:annotation-driven/>
+
+    <context:component-scan base-package="com.sg.supersightings.dao" />
+    <bean id="dataSource"
+          class="org.apache.commons.dbcp2.BasicDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url"
+                  value="jdbc:mysql://localhost:3306/SuperSightings_Test"/>
+        <property name="username" value="root"/>
+        <property name="password" value=""/>
+        <property name="initialSize" value="5"/>
+        <property name="maxTotal" value="10"/>
+    </bean>
+
+    <bean id="transactionManager"
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean id="jdbcTemplate"
+          class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean id="SuperDao" 
+          class="com.sg.supersightings.dao.SuperDaoJdbcTempImpl">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+    </bean>
+    
+    <bean id="PowerDao" 
+          class="com.sg.supersightings.dao.PowerDaoJdbcTempImpl">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+    </bean>
+    
+    <bean id="LocationDao" 
+          class="com.sg.supersightings.dao.LocationDaoJdbcTempImpl">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+    </bean>
+    
+    <bean id="SightingDao" 
+          class="com.sg.supersightings.dao.SightingDaoJdbcTempImpl">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+    </bean>
+    
+     <bean id="OrganizationDao" 
+          class="com.sg.supersightings.dao.OrganizationDaoJdbcTempImpl">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+    </bean>
+    
+    <bean id="SuperServiceLayer" class="com.sg.supersightings.servicelayer.SuperServiceLayerImpl">
+        <constructor-arg ref="SuperDao"/>
+    </bean>
+    
+    <bean id="PowerServiceLayer" class="com.sg.supersightings.servicelayer.PowerServiceLayerImpl">
+        <constructor-arg ref="PowerDao"/>
+    </bean>
+     
+    <bean id="LocationServiceLayer" class="com.sg.supersightings.servicelayer.LocationServiceLayerImpl">
+        <constructor-arg ref="LocationDao"/>
+    </bean>
+    
+    <bean id="SightingServiceLayer" class="com.sg.supersightings.servicelayer.SightingServiceLayerImpl">
+        <constructor-arg ref="SightingDao"/>
+    </bean>
+    
+    <bean id="OrganizationServiceLayer" class="com.sg.supersightings.servicelayer.OrganizationServiceLayerImpl">
+        <constructor-arg ref="OrganizationDao"/>
+    </bean>
+    
+</beans>

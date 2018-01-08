@@ -1,0 +1,73 @@
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans
+ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+ http://www.springframework.org/schema/security
+ http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+
+    <beans:bean id="webexpressionHandler"
+                class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler"/> 
+    
+    <beans:bean id="encoder"
+                class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/> 
+                
+    <http pattern="/login" security="none" />
+    <http pattern="/error" security="none" />
+    <http pattern="/css/**" security="none" />
+    <http pattern="/js/**" security="none" />
+    <http pattern="/img/**" security="none" />
+
+    <http auto-config="true" use-expressions="false">
+        <form-login login-processing-url="/j_spring_security_check"
+                    login-page="/login"
+                    authentication-failure-url="/login?login_error=1"/>
+       
+        <intercept-url pattern="/" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+        <intercept-url pattern="/index" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+        
+        <intercept-url pattern="/displaySuperheroPage" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+        <intercept-url pattern="/supers/createSuper" access="ROLE_USER" />
+        <intercept-url pattern="/createPower" access="ROLE_USER" />
+        <intercept-url pattern="/addPowerToSuper" access="ROLE_USER" />
+        <intercept-url pattern="/addOrganizationToSuper" access="ROLE_USER" />
+        <intercept-url pattern="/displaySupersDetails" access="ROLE_USER" />
+        <intercept-url pattern="/deleteSuper" access="ROLE_ADMIN" />
+        <intercept-url pattern="/displayEditSuperForm" access="ROLE_USER" />
+        <intercept-url pattern="/editSuper" access="ROLE_USER" />
+        
+        <intercept-url pattern="/displaySightingsPage" access="ROLE_USER" />
+        <intercept-url pattern="/sightings/createSighting" access="ROLE_USER" />
+        <intercept-url pattern="/addSuperToSighting" access="ROLE_USER" />
+        <intercept-url pattern="/displaySightingDetails" access="ROLE_ADMIN" />
+        <intercept-url pattern="/deleteSighting" access="ROLE_ADMIN" />
+        <intercept-url pattern="/displayEditSightingForm" access="ROLE_USER" />
+        <intercept-url pattern="/editSighting" access="ROLE_USER" />
+
+        <intercept-url pattern="/displayOrganizationPage" access="ROLE_USER" />
+        <intercept-url pattern="/organizations/createOrganization" access="ROLE_ADMIN" />
+        <intercept-url pattern="/displayOrganizationDetails" access="ROLE_USER" />
+        <intercept-url pattern="/deleteOrganization" access="ROLE_ADMIN" />
+        <intercept-url pattern="/displayEditOrganizationForm" access="ROLE_ADMIN" />
+        <intercept-url pattern="/editOrganization" access="ROLE_ADMIN" />
+        
+        <intercept-url pattern="/displayUserList" access="ROLE_ADMIN" />
+        <intercept-url pattern="/deleteUser" access="ROLE_ADMIN" />
+        <intercept-url pattern="/displayUserForm" access="ROLE_ADMIN" />
+        <intercept-url pattern="/addUser" access="ROLE_ADMIN" />
+        
+        <intercept-url pattern="/**" access="ROLE_USER" />
+      
+    </http>
+    <authentication-manager>
+        <authentication-provider>
+            <password-encoder ref="encoder"/>
+            <jdbc-user-service id="userService"
+                               data-source-ref="dataSource"
+                               users-by-username-query=
+ "select username, password, enabled from users where username=?"
+                               authorities-by-username-query=
+ "select username, authority from authorities where username=?" />
+        </authentication-provider>
+    </authentication-manager>
+</beans:beans>
